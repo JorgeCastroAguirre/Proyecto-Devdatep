@@ -1,16 +1,12 @@
 import React from 'react'
-import {useQuery} from '@tanstack/react-query'
+import {usePersonaje} from '../hooks/usePersonajes.js'
 import {useParams,useNavigate} from 'react-router-dom'
-import { getUnSoloPersonaje } from '../assets/api/dragonball'
 
 function TarjetaDePersonaje() {
   const {id} = useParams()
   const navigate = useNavigate()
 
-  const { isLoading, data: personaje, isError, error } = useQuery({
-    queryKey: ['personaje', id],
-    queryFn: () => getUnSoloPersonaje(id),
-  })
+  const { isLoading, data: personaje, isError, error } = usePersonaje(id)
 
   if(isLoading) return <p>Cargando...</p>
   if(isError) return <p>Error: {error.message}</p>
