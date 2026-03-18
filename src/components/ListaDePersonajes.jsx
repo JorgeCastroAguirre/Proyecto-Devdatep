@@ -32,8 +32,6 @@ function ListaDePersonajes() {
 
   const personajesFiltrados = personajes?.items ?? []
 
-
-
   if (personajesFiltrados.length === 0) return (
     <div className='flex flex-col items-center justify-center py-20 gap-3'>
       <p className='text-[#e8a020] text-4xl'>☯</p>
@@ -45,19 +43,19 @@ function ListaDePersonajes() {
 
   const RAZA_BADGE = {
     // Guerreros principales
-    Saiyan:             'bg-[#FA8A2A20] text-[#FA8A2A] border-[#FA8A2A50]', // naranja — traje Goku
-    Namekian:           'bg-[#40C87020] text-[#40C870] border-[#40C87050]', // verde — planeta Namek
-    Human:              'bg-[#FFD22B20] text-[#FFD22B] border-[#FFD22B50]', // amarillo — ki humano
-    Android:            'bg-[#7EB8FF20] text-[#7EB8FF] border-[#7EB8FF50]', // azul — mecánico/frío
-    'Frieza Race':      'bg-[#F1012420] text-[#F10124] border-[#F1012450]', // rojo — peligro/villano
-    Majin:              'bg-[#FF69B420] text-[#FF69B4] border-[#FF69B450]', // rosa — Buu
-    God:                'bg-[#C084FC20] text-[#C084FC] border-[#C084FC50]', // violeta — divino
-    Angel:              'bg-[#E0E0FF20] text-[#B0B8FF] border-[#B0B8FF40]', // blanco azulado — celestial
-    'Jiren Race':       'bg-[#FB923C20] text-[#FB923C] border-[#FB923C50]', // naranja rojizo — orgulloso guerrero
-    'Nucleico benigno': 'bg-[#34D39920] text-[#34D399] border-[#34D39950]', // esmeralda — benigno
-    Nucleico:           'bg-[#F9731620] text-[#F97316] border-[#F9731650]', // naranja oscuro — nucleico
-    Evil:               'bg-[#DC262620] text-[#DC2626] border-[#DC262650]', // rojo oscuro — malvado
-    Unknown:            'bg-[#ffffff10] text-[#9A9490] border-[#ffffff20]', // gris — desconocido
+    Saiyan:             'bg-[#FA8A2A20] text-[#FA8A2A] border-[#FA8A2A50]', // naranja 
+    Namekian:           'bg-[#40C87020] text-[#40C870] border-[#40C87050]', // verde 
+    Human:              'bg-[#FFD22B20] text-[#FFD22B] border-[#FFD22B50]', // amarillo 
+    Android:            'bg-[#7EB8FF20] text-[#7EB8FF] border-[#7EB8FF50]', // azul
+    'Frieza Race':      'bg-[#F1012420] text-[#F10124] border-[#F1012450]', // rojo
+    Majin:              'bg-[#FF69B420] text-[#FF69B4] border-[#FF69B450]', // rosa
+    God:                'bg-[#C084FC20] text-[#C084FC] border-[#C084FC50]', // violeta
+    Angel:              'bg-[#E0E0FF20] text-[#B0B8FF] border-[#B0B8FF40]', // blanco azulado 
+    'Jiren Race':       'bg-[#FB923C20] text-[#FB923C] border-[#FB923C50]', // naranja rojizo
+    'Nucleico benigno': 'bg-[#34D39920] text-[#34D399] border-[#34D39950]', // esmeralda
+    Nucleico:           'bg-[#F9731620] text-[#F97316] border-[#F9731650]', // naranja oscuro
+    Evil:               'bg-[#DC262620] text-[#DC2626] border-[#DC262650]', // rojo oscuro
+    Unknown:            'bg-[#ffffff10] text-[#9A9490] border-[#ffffff20]', // gris
   }
   
   function getBadge(race) {
@@ -67,7 +65,7 @@ function ListaDePersonajes() {
   return (
     <div>
       {/* GRID DE PERSONAJES */}
-      <div className='flex flex-wrap justify-center gap-4 mb-8 '>
+      <div className='grid gap-4 mb-8 grid-cols-[repeat(auto-fill,minmax(190px,1fr))] m-4'>
         {personajesFiltrados.map((personaje) => (
           <div
             key={personaje.id}

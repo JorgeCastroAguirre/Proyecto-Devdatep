@@ -4,7 +4,7 @@ function Paginacion({pagina,totalPaginas,setPagina}) {
 
   return (
     <>
-        <div className='flex items-center justify-center gap-2 pb-4'>
+        <div className='flex items-center justify-center gap-2 pb-4 mx-2'>
 
           <button
             onClick={() => setPagina(p => Math.max(p - 1, 1))}
@@ -23,8 +23,8 @@ function Paginacion({pagina,totalPaginas,setPagina}) {
               onClick={() => setPagina(n)}
               className={`w-9 h-9 rounded-lg text-sm font-bold transition-all
                 ${pagina === n
-                  ? 'bg-[#e8a020] text-[#021223] border border-[#e8a020]'
-                  : 'border border-[#e8a02025] text-[#7d7a74] hover:border-[#e8a020] hover:text-[#e8a020]'
+                  ? 'bg-[#FFD22B] text-[#021223] border border-[#FFD22B]'
+                  : 'border border-[#c9986d] text-[#7d7a74] hover:border-[#e8a020] hover:text-[#e8a020]'
                 }`}
             >
               {n}

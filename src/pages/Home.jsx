@@ -8,8 +8,8 @@ function Home() {
     <div className='min-h-screen bg-[#1E1A1A]'>
 
       {/* HEADER */}
-      <div className='bg-[#0b0a0a] border-b border-[#F10124] px-6 py-4 flex items-center justify-between'>
-        <div>
+      <div className='bg-[#0b0a0a] border-b border-[#F10124] px-6 py-4 flex items-center justify-center'>
+        <div className='flex flex-col items-center'>
           <div className='w-100 h-40'>
             <img src={img_logo} alt="logo-dragon-ball" className='w-full h-full object-cover'/>
           </div>
