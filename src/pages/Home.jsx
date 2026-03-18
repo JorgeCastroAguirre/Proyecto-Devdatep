@@ -38,11 +38,11 @@ function Home() {
         <BarraDeBusqueda />
       </div>
 
-      {/* DIVIDER con stats */}
+      {/* dividir con stats */}
       <div className='bg-[#0b0a0a] border-b border-[#FA8A2A] flex divide-x divide-[#FA8A2A]'>
         {[
           { label: 'Personajes', valor: '58' },
-          { label: 'Razas',      valor: '12' },
+          { label: 'Razas',      valor: '13' },
           { label: 'Sagas',      valor: '7'  },
         ].map(({ label, valor }) => (
           <div key={label} className='flex-1 px-6 py-3'>
@@ -55,7 +55,7 @@ function Home() {
 
       {/* LISTA */}
       <div className='pt-6 pb-6'>
-        <div className='flex items-center gap-4 mb-6'>
+        <div className='flex items-center gap-4 mb-6 mx-4'>
           <p className='text-[10px] tracking-[3px] uppercase text-white font-semibold'>
             Todos los personajes
           </p>
