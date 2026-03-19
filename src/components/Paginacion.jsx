@@ -17,7 +17,7 @@ function Paginacion({pagina,totalPaginas,setPagina}) {
             ← Anterior
           </button>
 
-          {Array.from({ length: totalPaginas }, (_, i) => i + 1).map(n => (
+          {Array.from({ length: totalPaginas }, (_, i) => i + 1).map(n => ( // [1,2,3,4,5]
             <button
               key={n}
               onClick={() => setPagina(n)}
