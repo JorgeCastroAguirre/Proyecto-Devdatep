@@ -1,6 +1,7 @@
-import React from 'react'
 import {usePersonaje} from '../hooks/usePersonajes.js'
 import {useParams,useNavigate} from 'react-router-dom'
+import FormularioComentario from './FormularioComentario.jsx'
+import TarjetaDePersonajeSkeleton from './TarjetaDePersonajeSkeleton.jsx'
 
 function TarjetaDePersonaje() {
   const {id} = useParams()
@@ -8,14 +9,14 @@ function TarjetaDePersonaje() {
 
   const { isLoading, data: personaje, isError, error } = usePersonaje(id)
 
-  if(isLoading) return <p>Cargando...</p>
+  if(isLoading) return <TarjetaDePersonajeSkeleton/>
   if(isError) return <p>Error: {error.message}</p>
 
   return (
-    <div className='min-h-screen bg-[#021223] text-white font-rajdhani'>
+    <div className='min-h-screen bg-[#1E1A1A] text-white font-rajdhani'>
 
       {/* NAV */}
-      <nav className='bg-[#0a1a2e] border-b border-[#e8a02040] px-6 h-14 flex items-center gap-4'>
+      <nav className='bg-black border-b border-[#F10124] px-6 h-14 flex items-center gap-4'>
         <button
           onClick={() => navigate('/')}
           className='border border-[#e8a02040] rounded-lg px-3 py-1 text-xs
@@ -25,23 +26,41 @@ function TarjetaDePersonaje() {
           ← Volver
         </button>
         <span className='text-xs text-[#7d7a74] tracking-wider'>
-          Personajes &rsaquo;{' '}
+          Personajes &rsaquo;{' '} 
           <span className='text-[#e8a020]'>{personaje.name}</span>
         </span>
       </nav>
 
       {/* HERO */}
-      <div className='bg-[#0a1a2e] border-b border-[#e8a02040] px-6 pt-8 relative overflow-hidden
-        flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-end'>
-        
-        {/* Imagen */}
-        <div className='w-36 h-44 sm:w-44 sm:h-52 shrink-0 flex items-end justify-center relative'>
-          <div className='absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-32 sm:w-40 sm:h-40
-            rounded-full bg-[#e8a02015] border border-[#e8a02030]' />
+      <div className='bg-black border-b border-[#e8a02040] px-6 pt-8 relative overflow-hidden
+        flex flex-col sm:flex-row gap-6 sm:gap-10 items-center sm:items-center'>
+
+        {/*DIV DE LA IMAGEN*/}
+        <div className='w-40 h-48 sm:w-56 sm:h-72 lg:w-64 lg:h-80 shrink-0
+          flex items-end justify-center relative'>
+          {/* Destello naranja difuminado — efecto ki */}
+          <div className='absolute bottom-0 left-1/2 -translate-x-1/2
+            w-32 h-32 sm:w-40 sm:h-40 rounded-full
+            bg-[#FA8A2A] opacity-20'
+            style={{ filter: 'blur(40px)' }}
+          />
+
+          {/* Destello amarillo más pequeño encima */}
+          <div className='absolute bottom-0 left-1/2 -translate-x-1/2
+            w-20 h-16 rounded-full
+            bg-[#FFD22B] opacity-10'
+            style={{ filter: 'blur(20px)' }}
+          />
+
+          {/* Suelo con degradado sutil */}
+          <div className='absolute bottom-0 left-0 right-0 h-10'
+            style={{ background: 'linear-gradient(to top, rgba(250,138,42,0.08), transparent)' }}
+          />
           <img
             src={personaje.image}
             alt={personaje.name}
-            className='relative z-10 w-36 h-44 sm:w-44 sm:h-52 object-contain object-bottom'
+            className='relative z-10 w-full h-full object-contain object-bottom
+              transition-transform duration-300 hover:scale-105'
           />
         </div>
 
@@ -50,7 +69,7 @@ function TarjetaDePersonaje() {
           <p className='text-[10px] tracking-[3px] uppercase text-[#e8a020] mb-1'>
             Personaje #{String(personaje.id).padStart(3, '0')}
           </p>
-          <h1 className='text-3xl sm:text-4xl font-bold text-white mb-3 leading-none'
+          <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 leading-none'
             style={{ fontFamily: 'Cinzel, serif' }}>
             {personaje.name}
           </h1>
@@ -81,17 +100,17 @@ function TarjetaDePersonaje() {
           Nivel de Ki
         </p>
 
-        <div className='bg-[#111c30] border border-[#e8a02040] rounded-2xl p-6 mb-4 relative overflow-hidden'>
+        <div className='bg-black border border-[#e8a02040] rounded-2xl p-6 mb-4 relative overflow-hidden'>
           <div className='absolute top-0 right-0 w-24 h-24 bg-[#e8a02012]
             rounded-bl-full rounded-tr-2xl' />
 
           <div className='flex items-end gap-2 mb-1'>
-            <span className='text-5xl font-bold text-[#e8a020] leading-none'
+            <span className='text-5xl font-bold text-[#FFD22B] leading-none'
               style={{ fontFamily: 'Cinzel, serif' }}>
               {personaje.ki}
             </span>
           </div>
-          <p className='text-[10px] tracking-widest uppercase text-[#7d7a74] mb-5'>
+          <p className='text-[10px] tracking-widest uppercase text-white mb-5'>
             Ki base del personaje
           </p>
 
@@ -101,14 +120,14 @@ function TarjetaDePersonaje() {
           </div>
 
           <div className='grid grid-cols-2 gap-3'>
-            <div className='bg-[#162035] border border-white/5 rounded-xl p-3'>
-              <p className='text-[9px] tracking-widest uppercase text-[#7d7a74] mb-1'>Ki base</p>
+            <div className='bg-[#1E1A1A] border border-white/5 rounded-xl p-3'>
+              <p className='text-[9px] tracking-widest uppercase text-[#FA8A2A] mb-1'>Ki base</p>
               <p className='text-lg font-bold text-white' style={{ fontFamily: 'Cinzel, serif' }}>
                 {personaje.ki}
               </p>
             </div>
-            <div className='bg-[#162035] border border-white/5 rounded-xl p-3'>
-              <p className='text-[9px] tracking-widest uppercase text-[#7d7a74] mb-1'>Ki máximo</p>
+            <div className='bg-[#1E1A1A] border border-white/5 rounded-xl p-3'>
+              <p className='text-[9px] tracking-widest uppercase text-[#F10124] mb-1'>Ki máximo</p>
               <p className='text-lg font-bold text-white' style={{ fontFamily: 'Cinzel, serif' }}>
                 {personaje.maxKi}
               </p>
@@ -129,14 +148,19 @@ function TarjetaDePersonaje() {
             { label: 'Género',           val: personaje.gender },
           ].map(({ label, val }) => (
             <div key={label}
-              className='bg-[#111c30] border border-white/5 rounded-xl px-4 py-3'>
-              <p className='text-[9px] tracking-widest uppercase text-[#7d7a74] mb-1'>{label}</p>
+              className='bg-black border border-white/5 rounded-xl px-4 py-3'>
+              <p className='text-[9px] tracking-widest uppercase text-[#FFD22B] mb-1'>{label}</p>
               <p className='text-sm font-semibold text-white'>{val}</p>
             </div>
           ))}
         </div>
 
       </div>
+      {/*formulario de comentarios*/}
+      <FormularioComentario 
+        personajeId = {personaje.id}
+        personajeNombre = {personaje.name}
+      />
     </div>
   )
 }
