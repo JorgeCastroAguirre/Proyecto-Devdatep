@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import Paginacion from './Paginacion.jsx'
 import PersonajeSkeleton from './PersonajeSkeleton.jsx'
+import { GiDragonBalls } from "react-icons/gi";
 
 
 function ListaDePersonajes() {
@@ -34,7 +35,7 @@ function ListaDePersonajes() {
 
   if (personajesFiltrados.length === 0) return (
     <div className='flex flex-col items-center justify-center py-20 gap-3'>
-      <p className='text-[#e8a020] text-4xl'>☯</p>
+      <p className='text-[#e8a020] text-4xl'><GiDragonBalls /></p>
       <p className='text-[#7d7a74] text-sm tracking-widest uppercase'>
         No se encontró "{buscar}"
       </p>
@@ -86,7 +87,7 @@ function ListaDePersonajes() {
             </div>
             <div className='w-full h-52 bg-[#241a02] flex items-center justify-center relative overflow-hidden'>
               
-              {/* Triángulo inferior derecho */}
+              {/* Triangulo inferior derecho */}
               <div className='absolute bottom-0 right-0 w-0 h-0'
                 style={{
                   borderStyle: 'solid',
@@ -95,7 +96,7 @@ function ListaDePersonajes() {
                 }}
               />
 
-              {/* Triángulo superior izquierdo */}
+              {/* Triangulo superior izquierdo */}
               <div className='absolute top-0 left-0 w-0 h-0'
                 style={{
                   borderStyle: 'solid',
@@ -104,7 +105,7 @@ function ListaDePersonajes() {
                 }}
               />
 
-              {/* Línea inferior */}
+              {/* Linea inferior */}
               <div className='absolute bottom-0 left-0 right-0 h-px'
                 style={{ background: 'linear-gradient(90deg, transparent, rgba(250,138,42,0.4), transparent)' }}
               />
@@ -132,7 +133,7 @@ function ListaDePersonajes() {
         
       </div>
 
-      {/* PAGINACIÓN */}
+      {/*PAGINACION*/}
       {totalPaginas > 1 && (
         <Paginacion pagina={pagina} totalPaginas={totalPaginas} setPagina={setPagina} />
       )}
