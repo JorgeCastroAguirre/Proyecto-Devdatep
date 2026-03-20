@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { getTodosLosPersonajes, getUnSoloPersonaje } from '../assets/api/dragonball'
+import { getTodosLosPersonajes, getUnSoloPersonaje} from '../../../api/dragonball.js'
+import {traducirTexto} from '../../../api/traduccion.js'
+
 
 const fetchConDelay = async (fn, ms = 1500) => {
     const [data] = await Promise.all([ //para ejecutar las 2 operaciones en paralelas 
@@ -20,5 +22,13 @@ export function usePersonaje(id) {
   return useQuery({
     queryKey: ['personaje', id],
     queryFn:  () => fetchConDelay( ()=> getUnSoloPersonaje(id),1500),
+  })
+}
+
+export function useTraduccion(texto, idiomaDestino = 'en') {
+  return useQuery({
+    queryKey: ['traduccion', texto, idiomaDestino],
+    queryFn:  () => traducirTexto(texto, idiomaDestino),
+    enabled:  !!texto && texto.length > 0,
   })
 }

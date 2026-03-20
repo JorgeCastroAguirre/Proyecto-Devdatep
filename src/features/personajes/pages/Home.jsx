@@ -1,13 +1,13 @@
-import React from 'react'
 import BarraDeBusqueda from '../components/BarraDeBusqueda.jsx'
 import ListaDePersonajes from '../components/ListaDePersonajes.jsx'
-import img_logo from '../assets/image/dagon-ball-z-logo.png'
+import img_logo from '../../../assets/image/dagon-ball-z-logo.png'
 
 function Home() {
+
   return (
     <div className='min-h-screen bg-[#1E1A1A]'>
 
-      {/* HEADER */}
+      {/*HEADER*/}
       <div className='bg-[#0b0a0a] border-b border-[#F10124] px-6 py-4 flex items-center justify-center'>
         <div className='flex flex-col items-center'>
           <div className='w-100 h-40'>

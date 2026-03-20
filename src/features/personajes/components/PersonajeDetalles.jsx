@@ -1,5 +1,4 @@
-import React from 'react'
-import TarjetaDePersonaje from '../components/TarjetaDePersonaje.jsx'
+import TarjetaDePersonaje from '../pages/TarjetaDePersonaje.jsx'
 
 function PersonajeDetalles() {
   return (

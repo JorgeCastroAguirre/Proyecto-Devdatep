@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from 'react'
 import {usePersonajes} from '../hooks/usePersonajes.js'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../../../context/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import Paginacion from './Paginacion.jsx'
 import PersonajeSkeleton from './PersonajeSkeleton.jsx'
 import { GiDragonBalls } from "react-icons/gi";
+import BotonesDeNavegacion from './BotonesDeNavegacion.jsx'
 
 
 function ListaDePersonajes() {
@@ -132,6 +133,10 @@ function ListaDePersonajes() {
         ))}
         
       </div>
+      
+      <div>
+        <BotonesDeNavegacion/>
+      </div>   
 
       {/*PAGINACION*/}
       {totalPaginas > 1 && (

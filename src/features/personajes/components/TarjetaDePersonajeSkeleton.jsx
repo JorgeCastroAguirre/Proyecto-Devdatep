@@ -2,7 +2,7 @@ function TarjetaDePersonajeSkeleton() {
 return (
   <div className='min-h-screen bg-[#1E1A1A] text-white'>
 
-    {/*NAV — carga inmediato, sin skeleton*/}
+    {/*nav que carga inmediato*/}
     <nav className='bg-black border-b border-[#F10124] px-6 h-14 flex items-center gap-4'>
       <button
         onClick={() => navigate('/')}

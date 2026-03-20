@@ -1,13 +1,23 @@
-import {usePersonaje} from '../hooks/usePersonajes.js'
+import {usePersonaje,useTraduccion} from '../hooks/usePersonajes.js'
 import {useParams,useNavigate} from 'react-router-dom'
-import FormularioComentario from './FormularioComentario.jsx'
-import TarjetaDePersonajeSkeleton from './TarjetaDePersonajeSkeleton.jsx'
+import FormularioComentario from '../../comentarios/components/FormularioComentario.jsx'
+import TarjetaDePersonajeSkeleton from '../components/TarjetaDePersonajeSkeleton.jsx'
+import { useState } from 'react'
+
+const IDIOMAS = [
+  { codigo: 'en', nombre: 'Inglés'},
+  { codigo: 'ja', nombre: 'Japonés'},
+  { codigo: 'pt', nombre: 'Portugués'},
+  { codigo: 'fr', nombre: 'Francés'},
+]
 
 function TarjetaDePersonaje() {
   const {id} = useParams()
   const navigate = useNavigate()
+  const [idioma, setIdioma] = useState('en') //inicia en español 
 
   const { isLoading, data: personaje, isError, error } = usePersonaje(id)
+  const {isLoading: traduciendo, data: traduccion} = useTraduccion(personaje?.description??'', idioma)
 
   if(isLoading) return <TarjetaDePersonajeSkeleton/>
   if(isError) return <p>Error: {error.message}</p>
@@ -38,14 +48,14 @@ function TarjetaDePersonaje() {
         {/*DIV DE LA IMAGEN*/}
         <div className='w-40 h-48 sm:w-56 sm:h-72 lg:w-64 lg:h-80 shrink-0
           flex items-end justify-center relative'>
-          {/* Destello naranja difuminado — efecto ki */}
+          {/*efecto*/}
           <div className='absolute bottom-0 left-1/2 -translate-x-1/2
             w-32 h-32 sm:w-40 sm:h-40 rounded-full
             bg-[#FA8A2A] opacity-20'
             style={{ filter: 'blur(40px)' }}
           />
 
-          {/* Destello amarillo más pequeño encima */}
+          {/*efecto*/}
           <div className='absolute bottom-0 left-1/2 -translate-x-1/2
             w-20 h-16 rounded-full
             bg-[#FFD22B] opacity-10'
@@ -64,7 +74,7 @@ function TarjetaDePersonaje() {
           />
         </div>
 
-        {/* Info */}
+        {/*Info*/}
         <div className='flex-1 pb-7 text-center sm:text-left w-full'>
           <p className='text-[10px] tracking-[3px] uppercase text-[#e8a020] mb-1'>
             Personaje #{String(personaje.id).padStart(3, '0')}
@@ -92,9 +102,51 @@ function TarjetaDePersonaje() {
       </div>
 
 
-      {/* CUERPO */}
+      {/*cuerpo*/}
       <div className='p-6'>
 
+        {/*traduccion llamada a la api*/}
+        <p className='text-[10px] tracking-[3px] uppercase text-[#e8a020] font-semibold mb-4'>
+          Traducción de descripción
+        </p>
+
+        <div className='bg-black border border-[#e8a02040] rounded-2xl p-5 mb-6'>
+
+          {/*seleccionamos idioma*/}
+          <div className='flex gap-2 flex-wrap mb-4'>
+            {IDIOMAS.map(i => (
+              <button
+                key={i.codigo}
+                onClick={() => setIdioma(i.codigo)}
+                className={`text-[9px] tracking-widest uppercase font-semibold
+                  px-3 py-1.5 rounded-lg border transition-colors
+                  ${idioma === i.codigo
+                    ? 'bg-[#e8a020] text-[#1E1A1A] border-[#e8a020]'
+                    : 'border-[#e8a02040] text-[#9A9490] hover:border-[#e8a020] hover:text-[#e8a020]'
+                  }`}
+              >
+                {i.nombre}
+              </button>
+            ))}
+          </div>
+
+          {/* Texto traducido */}
+          {traduciendo
+            ? <div className='animate-pulse'>
+                <div className='h-3 bg-[#2E2828] rounded-full w-full mb-2' />
+                <div className='h-3 bg-[#2E2828] rounded-full w-5/6 mb-2' />
+                <div className='h-3 bg-[#2E2828] rounded-full w-4/6' />
+              </div>
+            : <p className='text-sm text-[#9A9490] leading-relaxed'>
+                {traduccion}
+              </p>
+          }
+
+          {/*fuente*/}
+          <p className='text-[9px] text-[#3a3a3a] mt-3 tracking-wider uppercase'>
+            Traducido por MyMemory API
+          </p>
+        </div>
         {/* KI */}
         <p className='text-[10px] tracking-[3px] uppercase text-[#e8a020] font-semibold mb-4'>
           Nivel de Ki

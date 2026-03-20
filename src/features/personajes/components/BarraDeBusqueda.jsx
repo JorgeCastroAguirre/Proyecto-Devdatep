@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import imagen_esfera from '../assets/image/descarga.png'
-import { AuthContext } from '../context/AuthContext'
+import { useContext } from 'react'
+import imagen_esfera from '../../../assets/image/descarga.png'
+import { AuthContext } from '../../../context/AuthContext'
 
 
 function BarraDeBusqueda() {
